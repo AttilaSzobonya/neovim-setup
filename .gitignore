@@ -1,0 +1,22 @@
+# Ignore Neovim plugin directories (Packer, Lazy, etc.)
+/plugin
+/site
+/pack
+
+# Swap files (temporary files Neovim creates)
+*.swp
+*.swo
+*.swn
+
+# Undo history files (if you use persistent undo)
+undo/
+
+# Backup files
+backup/
+
+# Session files
+session/
+
+# Lua compiled cache files
+*.luac
+
