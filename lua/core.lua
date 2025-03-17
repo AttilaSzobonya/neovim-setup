@@ -88,6 +88,8 @@ vim.api.nvim_set_keymap("n", "gT", "<cmd>lua vim.lsp.buf.type_definition()<CR>",
 vim.api.nvim_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 vim.api.nvim_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 
+vim.api.nvim_set_keymap("n", "<leader>d", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
+
 -- Enable relative line numbers
 vim.o.number = true
 vim.o.relativenumber = true
