@@ -1,6 +1,11 @@
 -- core.lua
 -- Common Neovim configuration
 
+-- Enable true color support
+if vim.fn.has("termguicolors") == 1 then
+  vim.o.termguicolors = true
+end
+
 require("packer").startup(function(use)
   -- Let packer manage itself
   use "wbthomason/packer.nvim"

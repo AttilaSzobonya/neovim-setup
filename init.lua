@@ -2,6 +2,7 @@
 -- Main entry point for Neovim configuration
 
 -- Load the common configuration
+require("plugins")
 require("core")
 
 -- Load environment-specific configuration based on NEOVIM_ENVIRONMENT
