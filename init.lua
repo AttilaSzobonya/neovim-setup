@@ -1,8 +1,8 @@
 -- init.lua
 -- Main entry point for Neovim configuration
 
--- Load the common configuration
-require("plugins")
+vim.cmd [[packadd packer.nvim]]
+
 require("core")
 
 -- Load environment-specific configuration based on NEOVIM_ENVIRONMENT

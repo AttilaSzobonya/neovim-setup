@@ -1,16 +1,6 @@
 -- core.lua
 -- Common Neovim configuration
 
--- Enable true color support
-if vim.fn.has("termguicolors") == 1 then
-  vim.o.termguicolors = true
-end
-
-vim.opt.tabstop = 4       -- Show tabs as 4 spaces
-vim.opt.shiftwidth = 4    -- Indent/outdent by 4 spaces
-vim.opt.expandtab = true  -- Convert tabs to spaces
-vim.opt.softtabstop = 4   -- When pressing <Tab>, insert 4 spaces
-
 require("packer").startup(function(use)
   -- Let packer manage itself
   use "wbthomason/packer.nvim"
@@ -34,6 +24,8 @@ require("packer").startup(function(use)
   use "kyazdani42/nvim-tree.lua"
   use "kyazdani42/nvim-web-devicons"
 
+  use 'morhetz/gruvbox'
+
   -- Telescope for fuzzy finding
   use {
     "nvim-telescope/telescope.nvim",
@@ -49,6 +41,18 @@ require("packer").startup(function(use)
   end
 end)
 
+-- Enable true color support
+if vim.fn.has("termguicolors") == 1 then
+  vim.o.termguicolors = true
+end
+
+vim.cmd("colorscheme gruvbox")
+
+vim.opt.tabstop = 4       -- Show tabs as 4 spaces
+vim.opt.shiftwidth = 4    -- Indent/outdent by 4 spaces
+vim.opt.expandtab = true  -- Convert tabs to spaces
+vim.opt.softtabstop = 4   -- When pressing <Tab>, insert 4 spaces
+
 -- Set up nvim-cmp for autocompletion
 local cmp = require("cmp")
 cmp.setup({
@@ -61,6 +65,8 @@ cmp.setup({
     ["<Tab>"]   = cmp.mapping.select_next_item(),
     ["<S-Tab>"] = cmp.mapping.select_prev_item(),
     ["<CR>"]    = cmp.mapping.confirm({ select = true }),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-@>"] = cmp.mapping.complete(),  -- Sometimes <C-Space> is received as <C-@>
   }),
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
