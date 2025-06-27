@@ -35,8 +35,6 @@ if not env or env == "" or env == "general-dev" then
   local ok, err = pcall(require, "env.general-dev")
   if not ok then
     vim.notify("Error loading general development configuration:\n" .. err, vim.log.levels.ERROR)
-  else
-    vim.notify("Loaded general development configuration", vim.log.levels.INFO)
   end
 else
   -- Load specific environment configuration

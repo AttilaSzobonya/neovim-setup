@@ -40,5 +40,3 @@ if vim.fn.executable("pylsp") == 1 then
 elseif vim.fn.executable("pyright") == 1 then
   lspconfig.pyright.setup({})
 end
-
-vim.notify("General development environment loaded - basic LSP support enabled", vim.log.levels.INFO)
