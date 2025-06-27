@@ -5,16 +5,24 @@ This repository contains my personal Neovim configuration, built with modern too
 ## Installation & Setup
 
 ### 1. Install Neovim
+
+**⚠️ Important:** This configuration requires Neovim version **0.10.0 or higher**.
+
 Install Neovim using your system's package manager:
 
 **Debian/Ubuntu:**
 ```bash
-sudo apt update && sudo apt install neovim
+# Add the unstable repository for the latest version
+sudo apt-get update
+sudo apt-get install software-properties-common
+sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo apt-get update
+sudo apt-get install neovim
 ```
 
 **Alpine Linux:**
 ```bash
-doas apk update && doas apk add neovim
+doas apk update && doas apk add neovim neovim-doc
 ```
 
 **Fedora:**
@@ -31,6 +39,22 @@ sudo pacman -S neovim
 ```bash
 brew install neovim
 ```
+
+**Alternative: Build from Source (Linux/macOS):**
+```bash
+# For the latest features and fixes
+git clone https://github.com/neovim/neovim
+cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
+sudo make install
+```
+
+**Verify Installation:**
+```bash
+nvim --version
+# Should show version 0.10.0 or higher
+```
+
+If your version is below 0.10.0, please update before proceeding.
 
 ### 2. Clone the Configuration
 Clone this repository to your Neovim configuration directory:
