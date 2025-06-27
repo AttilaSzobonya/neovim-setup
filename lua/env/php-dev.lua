@@ -1,7 +1,6 @@
 -- env/php-dev.lua
 -- PHP development specific configuration
 
--- env/php-dev.lua
 local lspconfig = require("lspconfig")
 
 -- PHP: Use phpactor
