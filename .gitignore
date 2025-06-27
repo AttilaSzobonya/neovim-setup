@@ -3,20 +3,66 @@
 /site
 /pack
 
+# Lazy.nvim plugin data directory
+lazy-lock.json
+
 # Swap files (temporary files Neovim creates)
 *.swp
 *.swo
 *.swn
+*.tmp
 
 # Undo history files (if you use persistent undo)
 undo/
+.undodir/
 
 # Backup files
 backup/
+*.bak
+*.backup
 
 # Session files
 session/
+Session.vim
+.session
 
 # Lua compiled cache files
 *.luac
+
+# LSP and diagnostic cache
+.null-ls_*
+.nvim/
+
+# Telescope history and cache
+telescope.nvim/
+
+# Mason (LSP installer) data
+mason/
+
+# Any local/personal configuration overrides
+local.lua
+personal.lua
+*.local.lua
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.sublime-*
+
+# Log files
+*.log
+logs/
+
+# Temporary directories
+tmp/
+temp/
 

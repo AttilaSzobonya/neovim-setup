@@ -9,7 +9,7 @@ show_help() {
     echo ""
     echo "Commands:"
     echo "  set <env>     Set NEOVIM_ENVIRONMENT to specified value"
-    echo "  unset         Unset NEOVIM_ENVIRONMENT"
+    echo "  unset         Unset NEOVIM_ENVIRONMENT (uses general-dev)"
     echo "  show          Show current NEOVIM_ENVIRONMENT value"
     echo "  list          List available environment configurations"
     echo "  help          Show this help message"
@@ -21,6 +21,8 @@ show_help() {
             echo "  - $env_name"
         fi
     done
+    echo ""
+    echo "Note: Unset, empty, and 'general-dev' are functionally equivalent."
 }
 
 case "$1" in
@@ -51,22 +53,24 @@ case "$1" in
         
     "unset")
         unset NEOVIM_ENVIRONMENT
-        echo "NEOVIM_ENVIRONMENT has been unset"
+        echo "NEOVIM_ENVIRONMENT has been unset (will use general-dev)"
         echo "Add this to your shell profile to make it permanent:"
         echo "  unset NEOVIM_ENVIRONMENT"
         ;;
         
     "show")
         if [ -z "$NEOVIM_ENVIRONMENT" ]; then
-            echo "NEOVIM_ENVIRONMENT is not set"
+            echo "NEOVIM_ENVIRONMENT is not set (using general-dev)"
         elif [ "$NEOVIM_ENVIRONMENT" = "" ]; then
-            echo "NEOVIM_ENVIRONMENT is set but empty (this may cause issues)"
+            echo "NEOVIM_ENVIRONMENT is empty (using general-dev)"
+        elif [ "$NEOVIM_ENVIRONMENT" = "general-dev" ]; then
+            echo "NEOVIM_ENVIRONMENT = 'general-dev' (general development)"
         else
             echo "NEOVIM_ENVIRONMENT = '$NEOVIM_ENVIRONMENT'"
             if [ -f "lua/env/$NEOVIM_ENVIRONMENT.lua" ]; then
                 echo "✓ Environment config file exists"
             else
-                echo "✗ Environment config file not found"
+                echo "✗ Environment config file not found (will fallback to general-dev)"
             fi
         fi
         ;;

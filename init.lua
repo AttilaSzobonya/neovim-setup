@@ -28,14 +28,28 @@ require("lazy").setup("plugins", {
 
 -- Load environment-specific configuration based on NEOVIM_ENVIRONMENT
 local env = os.getenv("NEOVIM_ENVIRONMENT")
-if env and env ~= "" then
+
+-- Normalize environment: treat unset, empty, or "general-dev" as equivalent
+if not env or env == "" or env == "general-dev" then
+  -- Load general-dev configuration for all these cases
+  local ok, err = pcall(require, "env.general-dev")
+  if not ok then
+    vim.notify("Error loading general development configuration:\n" .. err, vim.log.levels.ERROR)
+  else
+    vim.notify("Loaded general development configuration", vim.log.levels.INFO)
+  end
+else
+  -- Load specific environment configuration
   local ok, err = pcall(require, "env." .. env)
   if not ok then
     vim.notify("Error loading environment configuration for " .. env .. ":\n" .. err, vim.log.levels.ERROR)
+    -- Fallback to general-dev if specific environment fails
+    local fallback_ok, fallback_err = pcall(require, "env.general-dev")
+    if fallback_ok then
+      vim.notify("Falling back to general development configuration", vim.log.levels.WARN)
+    end
   else
     vim.notify("Loaded environment configuration: " .. env, vim.log.levels.INFO)
   end
-else
-  vim.notify("NEOVIM_ENVIRONMENT not set or empty. Only loading common configuration.", vim.log.levels.INFO)
 end
 

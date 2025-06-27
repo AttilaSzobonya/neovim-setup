@@ -42,16 +42,18 @@ echo ""
 # Check current environment variable
 echo "Environment check:"
 if [ -z "$NEOVIM_ENVIRONMENT" ]; then
-    echo "  NEOVIM_ENVIRONMENT is not set (will load common config only)"
+    echo "  NEOVIM_ENVIRONMENT is not set (will use general-dev)"
 elif [ "$NEOVIM_ENVIRONMENT" = "" ]; then
-    echo "  ⚠️  NEOVIM_ENVIRONMENT is set but empty - this may cause errors"
-    echo "     Consider unsetting it: unset NEOVIM_ENVIRONMENT"
+    echo "  NEOVIM_ENVIRONMENT is empty (will use general-dev)"
+elif [ "$NEOVIM_ENVIRONMENT" = "general-dev" ]; then
+    echo "  NEOVIM_ENVIRONMENT = 'general-dev' (general development)"
 else
     echo "  NEOVIM_ENVIRONMENT = '$NEOVIM_ENVIRONMENT'"
     if [ -f "lua/env/$NEOVIM_ENVIRONMENT.lua" ]; then
         echo "  ✓ Environment config file exists"
     else
-        echo "  ✗ Environment config file 'lua/env/$NEOVIM_ENVIRONMENT.lua' not found"
+        echo "  ⚠️  Environment config file 'lua/env/$NEOVIM_ENVIRONMENT.lua' not found"
+        echo "     Will fallback to general-dev configuration"
     fi
 fi
 echo ""
